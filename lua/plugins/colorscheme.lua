@@ -39,6 +39,7 @@ return {
         background = true, -- use background color for virtual text
       },
     },
+    lazy = "true",
     priority = 1000, -- Ensure it loads first
   },
 
