@@ -15,7 +15,7 @@ return {
       end
       return {
         completion = {
-          completeopt = "menu,menuone,noinsert",
+          completeopt = "menu,menuone,noinsert,noselect",
         },
         snippet = {
           expand = function(args)
