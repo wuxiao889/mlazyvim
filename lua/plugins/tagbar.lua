@@ -1,7 +1,7 @@
 return {
   {
     "preservim/tagbar",
-    lazy = true,
+    lazy = false,
     keys = {
       { "<space>t", "<cmd>TagbarToggle<cr>", desc = "tagbar" },
     },
