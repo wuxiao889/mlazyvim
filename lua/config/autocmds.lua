@@ -8,3 +8,10 @@ vim.cmd("hi SignColumn ctermbg=none")
 vim.cmd("hi VertSplit guifg=none guibg=none")
 vim.cmd("hi TelescopeMatching guifg=none guibg=grey")
 vim.cmd("hi! link Visual Search")
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "c", "cpp" },
+  callback = function()
+    vim.b.autoformat = false
+  end,
+})

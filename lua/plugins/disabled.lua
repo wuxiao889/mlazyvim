@@ -8,4 +8,9 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     enabled = false,
   },
+
+  {
+    "folke/which-key.nvim",
+    enabled = false,
+  },
 }

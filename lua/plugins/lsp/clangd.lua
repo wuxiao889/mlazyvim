@@ -15,29 +15,27 @@ return {
     lazy = true,
     config = function() end,
     opts = {
-      extensions = {
-        inlay_hints = {
-          inline = false,
+      inlay_hints = {
+        inline = false,
+      },
+      ast = {
+        --These require codicons (https://github.com/microsoft/vscode-codicons)
+        role_icons = {
+          type = "",
+          declaration = "",
+          expression = "",
+          specifier = "",
+          statement = "",
+          ["template argument"] = "",
         },
-        ast = {
-          --These require codicons (https://github.com/microsoft/vscode-codicons)
-          role_icons = {
-            type = "",
-            declaration = "",
-            expression = "",
-            specifier = "",
-            statement = "",
-            ["template argument"] = "",
-          },
-          kind_icons = {
-            Compound = "",
-            Recovery = "",
-            TranslationUnit = "",
-            PackExpansion = "",
-            TemplateTypeParm = "",
-            TemplateTemplateParm = "",
-            TemplateParamObject = "",
-          },
+        kind_icons = {
+          Compound = "",
+          Recovery = "",
+          TranslationUnit = "",
+          PackExpansion = "",
+          TemplateTypeParm = "",
+          TemplateTemplateParm = "",
+          TemplateParamObject = "",
         },
       },
     },
@@ -50,6 +48,8 @@ return {
       servers = {
         -- Ensure mason installs the server
         clangd = {
+          -- manual install
+          mason = false,
           keys = {
             { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
           },
@@ -77,7 +77,6 @@ return {
             completeUnimported = true,
             clangdFileStatus = true,
           },
-          mason = "false",
         },
       },
       setup = {
@@ -100,6 +99,16 @@ return {
   {
     "mfussenegger/nvim-dap",
     optional = true,
+    dependencies = {
+      -- Ensure C/C++ debugger is installed
+      "williamboman/mason.nvim",
+      optional = true,
+      opts = function(_, opts)
+        if type(opts.ensure_installed) == "table" then
+          vim.list_extend(opts.ensure_installed, { "codelldb" })
+        end
+      end,
+    },
     opts = function()
       local dap = require("dap")
       if not dap.adapters["codelldb"] then
