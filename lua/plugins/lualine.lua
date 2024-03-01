@@ -26,7 +26,7 @@ return {
       return {
         options = {
           theme = "auto",
-          globalstatus = true,
+          globalstatus = false,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
         },
         sections = {
