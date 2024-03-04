@@ -14,7 +14,11 @@ return {
     },
     opts = {
       attach_mode = "global",
-      backends = { "lsp", "treesitter", "markdown", "man" },
+      backends = {
+        ["_"] = { "lsp", "treesitter" },
+        --  lsp work not well with cpp
+        cpp = { "treesitter" },
+      },
       layout = { min_width = 28 },
       show_guides = true,
       guides = {
