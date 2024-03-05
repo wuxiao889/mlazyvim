@@ -4,7 +4,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
+      { "<leader>,", Util.telescope("buffers", {show_all_buffers = true, initial_mode = "normal"}), desc = "Switch Buffer" },
       { "<leader>/", Util.telescope("live_grep"), desc = "Grep (root dir)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
