@@ -1,0 +1,15 @@
+{
+  "name": "my-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "cpp",
+        "path": "./cpp.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "quickinput": {
+    "prefix": "rlnm",
+    "body": [
+      "const readline = require('readline');",
+      "const rl = readline.createInterface({",
+      "input: process.stdin,",
+      "output: process.stdout,",
+      "});",
+      "",
+      "let n, m, arr = []",
+      "rl.on('line', (line) => {",
+      "  if (!n) {",
+      "    [n, m] = line.split(' ').map(Number)",
+      "  } else {",
+      "    if (arr.length != m) {",
+      "      arr.push(line.split(' ').map(Number))",
+      "    }",
+      "    if (arr.length == m) {",
+      "      solve(n,m,arr)",
+      "      rl.close()",
+      "    }",
+      "  }",
+      "})",
+      "",
+      "function solve(n, m ,arr){",
+      "}"
+    ],
+    "description": "quick input for test."
+  }
+}

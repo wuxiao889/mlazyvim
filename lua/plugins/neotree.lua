@@ -30,18 +30,20 @@ return {
         },
       },
       default_component_configs = {
-        symbols = {
-          -- Change type
-          added = "✚",
-          deleted = "✖",
-          modified = "m",
-          renamed = "󰁕",
-          -- Status type
-          untracked = "?",
-          ignored = "",
-          unstaged = "×",
-          staged = "√",
-          conflict = "",
+        git_status = {
+          symbols = {
+            -- Change type
+            added = "",
+            deleted = "",
+            modified = "m",
+            renamed = "󰁕",
+            -- Status type
+            untracked = "?",
+            ignored = "",
+            unstaged = "󰄱",
+            staged = "√",
+            conflict = "",
+          },
         },
       },
     },
