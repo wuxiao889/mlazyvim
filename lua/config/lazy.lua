@@ -17,6 +17,7 @@ require("lazy").setup({
     -- import/override with your plugins
     { import = "plugins" },
     { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "plugins.extras" },
     { import = "plugins.lsp.ccls" },
     { import = "plugins.lsp.pylsp" },
   },

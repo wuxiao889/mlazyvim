@@ -10,23 +10,7 @@ local ui_diagnostics = {
     hint = icons.diagnostics.Hint,
   },
 }
-local ui_aerial = {
-  "aerial",
-  -- The separator to be used to separate symbols in status line.
-  sep = " ) ",
-  -- The number of symbols to render top-down. In order to render only 'N' last
-  -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
-  -- be used in order to render only current symbol.
-  depth = -1,
-  -- When 'dense' mode is on, icons are not rendered near their symbols. Only
-  -- a single icon that represents the kind of current symbol is rendered at
-  -- the beginning of status line.
-  dense = true,
-  -- The separator to be used to separate symbols in dense mode.
-  dense_sep = ".",
-  -- Color the symbol icons.
-  colored = true,
-}
+
 local ui_diff = {
   "diff",
   symbols = {
@@ -66,20 +50,20 @@ local ui_filename = {
   },
 }
 
+local ui_lsp = function()
+  local original_bufnr = vim.api.nvim_get_current_buf()
+  local buf_clients = vim.lsp.get_active_clients({ bufnr = original_bufnr })
+  if next(buf_clients) == nil then
+    return ""
+  else
+    return tostring(buf_clients[1].name)
+  end
+end
+
 return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    init = function()
-      vim.g.lualine_laststatus = vim.o.laststatus
-      if vim.fn.argc(-1) > 0 then
-        -- set an empty statusline till lualine loads
-        vim.o.statusline = " "
-      else
-        -- hide the statusline on the starter page
-        vim.o.laststatus = 0
-      end
-    end,
     opts = function()
       -- PERF: we don't need this lualine require madness 🤷
       local lualine_require = require("lualine_require")
@@ -98,18 +82,11 @@ return {
               "dashboard",
               "alpha",
               "starter",
-              "aerial",
             },
           },
           -- always be drawn as inactive statusline
           ignore_focus = {
             "help",
-            "dapui_stacks",
-            "dapui_breakpoints",
-            "dapui_scopes",
-            "dapui_console",
-            "dapui_watches",
-            "dap-repl",
           },
         },
         sections = {
@@ -117,7 +94,6 @@ return {
           lualine_b = { ui_diff, { "branch" } },
           lualine_c = {
             ui_filename,
-            ui_aerial,
           },
           lualine_x = {
             -- stylua: ignore
@@ -145,7 +121,8 @@ return {
             ui_diagnostics,
             { "fileformat" },
             { "encoding" },
-            { "filetype", icon_only = false },
+            ui_lsp,
+            { "filetype", colored = false, icon_only = false },
           },
           lualine_y = {
             { "progress", separator = " " },

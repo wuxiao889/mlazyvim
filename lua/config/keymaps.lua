@@ -9,3 +9,4 @@ set("i", "kj", "<Esc>", { desc = "kj to escqpe" })
 
 set("n", "<leader>sv", ":luafile ~/.config/nvim/init.lua<Cr>", { desc = "source config" })
 set("n", "<leader>ev", ":e $MYVIMRC<Cr>", { desc = "edit config" })
+set("n", "<leader>el", ":e ~/.local/share/nvim/lazy/LazyVim/init.lua<Cr>", { desc = "lazyvim config" })
