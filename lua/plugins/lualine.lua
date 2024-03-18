@@ -30,6 +30,12 @@ local ui_diff = {
   end,
 }
 
+local show = function()
+  local max_width = vim.o.columns
+  local current_width = vim.api.nvim_win_get_width(0)
+  return current_width > max_width / 2
+end
+
 local ui_filename = {
   "filename",
   file_status = true, -- Displays file status (readonly status, modified status)
@@ -91,23 +97,23 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { ui_diff, { "branch" } },
+          lualine_b = { ui_diff, { "branch" , cond = show} },
           lualine_c = {
             ui_filename,
           },
           lualine_x = {
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.command.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-              color = Util.ui.fg("Statement"),
-            },
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.mode.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-              color = Util.ui.fg("Constant"),
-            },
+            -- -- stylua: ignore
+            -- {
+            --   function() return require("noice").api.status.command.get() end,
+            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+            --   color = Util.ui.fg("Statement"),
+            -- },
+            -- -- stylua: ignore
+            -- {
+            --   function() return require("noice").api.status.mode.get() end,
+            --   cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+            --   color = Util.ui.fg("Constant"),
+            -- },
             -- for nvim-dap
             {
               function()
@@ -119,10 +125,10 @@ return {
               color = Util.ui.fg("Debug"),
             },
             ui_diagnostics,
-            { "fileformat" },
-            { "encoding" },
-            ui_lsp,
-            { "filetype", colored = false, icon_only = false },
+            { "fileformat", cond = show },
+            { "encoding", cond = show },
+            { ui_lsp, cond = show },
+            { "filetype", icon_only = false },
           },
           lualine_y = {
             { "progress", separator = " " },
