@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 local set = vim.keymap.set
+local del = vim.keymap.del
 
 set("i", "jk", "<Esc>", { desc = "jk to escqpe" })
 set("i", "kj", "<Esc>", { desc = "kj to escqpe" })
@@ -10,3 +11,6 @@ set("i", "kj", "<Esc>", { desc = "kj to escqpe" })
 set("n", "<leader>sv", ":luafile ~/.config/nvim/init.lua<Cr>", { desc = "source config" })
 set("n", "<leader>ev", ":e $MYVIMRC<Cr>", { desc = "edit config" })
 set("n", "<leader>el", ":e ~/.local/share/nvim/lazy/LazyVim/init.lua<Cr>", { desc = "lazyvim config" })
+set("n", "zi", "V/#<cr>zf", { desc = "fold macro" })
+
+del("n", "<leader>K")

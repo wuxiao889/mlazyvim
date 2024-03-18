@@ -3,7 +3,7 @@
 -- Add any additional options here
 
 vim.g.mapleader = ","
-
 vim.opt.wrap = true
 vim.opt.ignorecase = false
 vim.opt.swapfile = false
+vim.opt.foldmethod = "manual"
