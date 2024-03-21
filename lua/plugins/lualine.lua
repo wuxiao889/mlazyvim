@@ -97,23 +97,11 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { ui_diff, { "branch" , cond = show} },
+          lualine_b = { ui_diff, { "branch", cond = show } },
           lualine_c = {
             ui_filename,
           },
           lualine_x = {
-            -- -- stylua: ignore
-            -- {
-            --   function() return require("noice").api.status.command.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            --   color = Util.ui.fg("Statement"),
-            -- },
-            -- -- stylua: ignore
-            -- {
-            --   function() return require("noice").api.status.mode.get() end,
-            --   cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            --   color = Util.ui.fg("Constant"),
-            -- },
             -- for nvim-dap
             {
               function()

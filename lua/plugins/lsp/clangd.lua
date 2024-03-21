@@ -51,7 +51,7 @@ return {
           -- manual install
           mason = false,
           keys = {
-            { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+            { "<leader>h", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
           },
           root_dir = function(fname)
             return require("lspconfig.util").root_pattern(
@@ -125,26 +125,26 @@ return {
           },
         }
       end
-      for _, lang in ipairs({ "c", "cpp" }) do
-        dap.configurations[lang] = {
-          {
-            type = "codelldb",
-            request = "launch",
-            name = "Launch file",
-            program = function()
-              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-            end,
-            cwd = "${workspaceFolder}",
-          },
-          {
-            type = "codelldb",
-            request = "attach",
-            name = "Attach to process",
-            processId = require("dap.utils").pick_process,
-            cwd = "${workspaceFolder}",
-          },
-        }
-      end
+      -- for _, lang in ipairs({ "c", "cpp" }) do
+      --   dap.configurations[lang] = {
+      --     {
+      --       type = "codelldb",
+      --       request = "launch",
+      --       name = "Launch file",
+      --       program = function()
+      --         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      --       end,
+      --       cwd = "${workspaceFolder}",
+      --     },
+      --     {
+      --       type = "codelldb",
+      --       request = "attach",
+      --       name = "Attach to process",
+      --       processId = require("dap.utils").pick_process,
+      --       cwd = "${workspaceFolder}",
+      --     },
+      --   }
+      -- end
     end,
   },
 }

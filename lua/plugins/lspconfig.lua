@@ -1,3 +1,5 @@
+local telescope = require("telescope.builtin")
+
 return {
   -- LSP keymaps
   {
@@ -8,7 +10,7 @@ return {
       keys[#keys + 1] = {
         "gd",
         function()
-          require("telescope.builtin").lsp_definitions({ reuse_win = true, initial_mode = "normal" })
+          telescope.lsp_definitions({ reuse_win = true, initial_mode = "normal" })
         end,
         desc = "Goto Definition",
         has = "definition",
@@ -17,7 +19,7 @@ return {
       keys[#keys + 1] = {
         "gr",
         function()
-          require("telescope.builtin").lsp_references({ initial_mode = "normal" })
+          telescope.lsp_references({ initial_mode = "normal" })
         end,
         desc = "References",
       }
@@ -25,7 +27,7 @@ return {
       keys[#keys + 1] = {
         "gI",
         function()
-          require("telescope.builtin").lsp_implementations({ reuse_win = true, initial_mode = "normal" })
+          telescope.lsp_implementations({ reuse_win = true, initial_mode = "normal" })
         end,
         desc = "Goto Implementation",
       }
