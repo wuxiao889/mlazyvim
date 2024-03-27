@@ -12,6 +12,7 @@ vim.cmd("hi Normal ctermbg=none")
 vim.cmd("hi SignColumn ctermbg=none")
 vim.cmd("hi VertSplit guifg=none guibg=none")
 vim.cmd("hi TelescopeMatching guifg=none guibg=grey")
+vim.cmd("hi Visual guifg=none guibg=blue")
 -- vim.cmd("hi! link Visual Search")
 
 autocmd({ "FileType" }, {
